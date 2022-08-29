@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    res.status(200).send('<h1>Hola mundo </h1>');
+});
+
 app.post('/webhook',(req, res) => {
     console.log('post: webhook');
 
