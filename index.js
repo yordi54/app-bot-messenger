@@ -29,7 +29,7 @@ app.post('/webhook',(req, res) => {
            const sender_psid = webhookEvent.sender.id;
            console.log(`Sender PSID: ${sender_psid}`);
            //validar si estamos recibiendo un mensaje
-            if(webhookEvent.messaging){
+            if(webhookEvent.message){
                 handleMessage(sender_psid, webhookEvent.message);
             }else if(webhookEvent.postback){
                 handlePostBack(sender_psid, webhookEvent.postback)
