@@ -14,7 +14,7 @@ app.post('/webhook',(req, res) => {
 
     const body = req.body;
     if(body.object === 'page'){
-        body.forEach(entry => {
+        body.entry.forEach(entry => {
             //se reciben los mensajes
             const webhookEvent = entry.messaging[0];
             console.log(webhookEvent);
