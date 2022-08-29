@@ -40,7 +40,7 @@ app.get('/webhook',(req, res) => {
             res.sendStatus(404);
         }
     }else {
-        res.sendStatus(404);
+        res.status(404).send('no pude ingresar');
     }
 });
 
