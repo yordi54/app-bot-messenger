@@ -44,6 +44,7 @@ app.get('/webhook',(req, res) => {
     }
 });
 
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log('Servidor iniciado');
 });
