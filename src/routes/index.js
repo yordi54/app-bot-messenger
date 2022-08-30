@@ -1,20 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const { Router } = require('express');
 const request = require('request');
-
-const app = express();
+const router = Router();
 
 const pageAccessToken = process.env.PAGE_ACCESS_TOKEN;
-const PORT = process.env.PORT;
-
-app.use(bodyParser.json());
 
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).send('<h1>Hola mundo </h1>');
 });
 
-app.post('/webhook',(req, res) => {
+router.post('/webhook',(req, res) => {
     console.log('post: webhook');
 
     const body = req.body;
@@ -41,7 +36,9 @@ app.post('/webhook',(req, res) => {
         res.sendStatus(404);
     }
 });
-app.get('/webhook',(req, res) => {
+
+
+router.get('/webhook',(req, res) => {
     console.log('get: webhook');
     const VERIFY_TOKEN = 'my_verify_token_unique';
     
@@ -61,9 +58,6 @@ app.get('/webhook',(req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log('Servidor iniciado');
-});
 
 //administracion de eventos
 function handleMessage(sender_psid, received_message){
@@ -102,3 +96,6 @@ function callSendAPI(sender_psid, response){
         }
     });
 }
+
+
+module.exports = router;
