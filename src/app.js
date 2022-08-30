@@ -5,7 +5,7 @@ const router = require('./routes/index');
 const app = express();
 
 //config
-app.set('port', 3000 || process.env.PORT);
+app.set('port',process.env.PORT);
 app.use(bodyParser.json());
 
 //routes
