@@ -26,8 +26,6 @@ router.post('/webhook',(req, res) => {
            //validar si estamos recibiendo un mensaje
             if(webhookEvent.message){
                 handleMessage(sender_psid, webhookEvent.message);
-            }else if(webhookEvent.postback){
-                handlePostBack(sender_psid, webhookEvent.postback)
             }
         });
         res.status(200).send('Evento Recibido');
@@ -51,10 +49,10 @@ router.get('/webhook',(req, res) => {
             console.log('WebHook Verificado');
             res.status(200).send(challenge);
         }else{
-            res.sendStatus(404);
+            res.sendStatus(403);
         }
-    }else {
-        res.status(404).send('no pude ingresar');
+    }else{
+        res.sendStatus(404);
     }
 });
 
@@ -70,10 +68,8 @@ function handleMessage(sender_psid, received_message){
 
     callSendAPI(sender_psid, response)
 }
-//funcionalidad de postback
-function handlePostBack(sender_psid, received_message){
-    
-}
+
+
 
 //enviar los mensajes de regreso
 function callSendAPI(sender_psid, response){
